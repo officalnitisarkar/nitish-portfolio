@@ -4,8 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0E0B14">
-<meta name="robots" content="noindex, nofollow">
-<meta name="googlebot" content="noindex, nofollow">
 <title>Nitish Sarkar | Portfolio</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap">
 <style>
@@ -38,7 +36,7 @@ nav#bar.s{background:var(--bg)}
 .links a:hover{color:#fff}
 
 /* ===== HERO: 3D video + 3D name ===== */
-#hero{position:relative;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:6.5rem 6% 4rem;background:radial-gradient(900px 600px at 80% 25%,rgba(229,9,20,.42),transparent 60%),radial-gradient(600px 500px at 5% 95%,rgba(80,60,160,.35),transparent 60%)}
+#hero{position:relative;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:6.5rem 6% 4rem;background:radial-gradient(900px 600px at 80% 25%,rgba(229,9,20,.12),transparent 60%),radial-gradient(600px 500px at 5% 95%,rgba(80,60,160,.35),transparent 60%)}
 #hero:after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(rgba(14,11,20,.45),rgba(14,11,20,.05) 30%,rgba(14,11,20,.55) 62%,rgba(14,11,20,.95));pointer-events:none}
 #stage{position:absolute;inset:0;z-index:1;perspective:900px;overflow:hidden}
 #hv{display:block;width:100%;height:100%;object-fit:contain;object-position:50% 50%;background:#0E0B14;transform:rotateX(var(--px,0deg)) rotateY(var(--py,0deg));will-change:transform}
@@ -50,7 +48,7 @@ nav#bar.s{background:var(--bg)}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
 
 /* ===== Sections ===== */
-section{padding-top:56px}
+section{padding-top:30px}
 h2.t{font-size:clamp(30px,5vw,44px);margin:0 4% 8px}
 .track{display:flex;gap:12px;overflow-x:auto;padding:14px 4% 24px;scroll-snap-type:x proximity}
 .tile{flex:0 0 auto;border-radius:8px;scroll-snap-align:start;transition:transform .25s;color:#fff}
@@ -65,7 +63,11 @@ h2.t{font-size:clamp(30px,5vw,44px);margin:0 4% 8px}
 .meta span{border:1px solid #5a4f70;padding:1px 10px;font-size:13px;color:#ddd;border-radius:3px}
 #about p{color:var(--mute);max-width:520px;margin:0 0 12px}
 .chips{padding:10px 4%;display:flex;flex-wrap:wrap;gap:10px;max-width:900px}
-.chip{background:var(--panel);border-bottom:3px solid var(--red);padding:12px 20px;border-radius:6px;font-weight:700}
+.chip{position:relative;overflow:hidden;isolation:isolate;cursor:pointer;-webkit-tap-highlight-color:transparent;background:var(--panel);border-bottom:3px solid var(--red);padding:12px 20px;border-radius:10px;font-weight:700;transition:transform .2s,border-color .4s,box-shadow .4s}
+.chip:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(135deg,hsl(var(--h) 90% 58%),hsl(calc(var(--h) + 40) 85% 42%));clip-path:circle(0% at var(--x,50%) var(--y,50%));transition:clip-path .65s cubic-bezier(.2,.8,.2,1)}
+.chip.on:before{clip-path:circle(150% at var(--x,50%) var(--y,50%))}
+.chip.on{border-color:hsl(var(--h) 90% 70%);box-shadow:0 8px 24px hsl(var(--h) 90% 50% / .35);color:#fff}
+.chip:active{transform:scale(.94)}
 .tl{margin:20px 4%;border-left:2px solid var(--red);padding-left:22px;display:grid;gap:22px;max-width:760px}
 .tl div{position:relative}
 .tl div:before{content:"";position:absolute;left:-29px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--red);box-shadow:0 0 14px var(--red)}
@@ -86,6 +88,35 @@ footer{text-align:center;color:#6c6380;font-size:13px;padding:0 0 30px}
 
 @media(max-width:760px){#about{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tile{transition:none}}
+/* ===== 360 RING CARDS (pro look) ===== */
+.ring{position:relative;display:block;overflow:visible!important;perspective:1200px;padding:0!important;margin:0;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.ring:active{cursor:grabbing}
+.ring:after{content:"\25C0   SWIPE   \25B6";position:absolute;left:0;right:0;bottom:0;text-align:center;font:700 10px "DM Sans",sans-serif;letter-spacing:.3em;color:var(--mute);opacity:.7;pointer-events:none}
+.spin{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d}
+.ring .tile{position:absolute;left:0;top:0;border-radius:20px;transition:none;border:1px solid rgba(255,255,255,.14);box-shadow:0 20px 40px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.2);overflow:hidden;will-change:transform}
+.ring .ex{width:210px;height:128px;padding:18px;align-items:flex-end;justify-content:space-between;text-align:left;font-size:30px}
+.ring .ex:after{content:"\2192";font:400 26px "DM Sans",sans-serif;opacity:.85}
+.ring .pj{width:240px;height:290px;min-height:0;padding:22px;align-items:flex-start;justify-content:flex-end;text-align:left;gap:6px}
+.ring .pj:before{content:attr(data-n);position:absolute;top:14px;left:20px;font:400 52px/1 "Bebas Neue";color:rgba(255,255,255,.2)}
+.ring .pj:after{content:"View details \2192";margin-top:10px;font-size:12px;font-weight:700;letter-spacing:.04em;padding-top:10px;border-top:1px solid rgba(255,255,255,.25);width:100%}
+.ring .pj b{font-size:30px;line-height:.95}
+.ring .pj span{font-size:13px;line-height:1.45;-webkit-line-clamp:4}
+/* ===== LIGHTING (dark red + black, halka) ===== */
+#amb{position:fixed;inset:-20%;z-index:-1;pointer-events:none;background:radial-gradient(40% 35% at 20% 25%,rgba(150,8,18,.14),transparent 70%),radial-gradient(35% 30% at 80% 70%,rgba(120,6,16,.12),transparent 70%),radial-gradient(30% 30% at 55% 105%,rgba(80,4,12,.3),transparent 70%);animation:amb 16s ease-in-out infinite alternate}
+@keyframes amb{from{transform:translate3d(-3%,-2%,0) scale(1)}to{transform:translate3d(3%,3%,0) scale(1.1)}}
+#vig{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(120% 90% at 50% 40%,transparent 40%,rgba(0,0,0,.88))}
+.ring .tile .sheen{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .35s;border-radius:inherit;background:radial-gradient(170px circle at var(--mx,50%) var(--my,50%),rgba(255,50,60,.2),rgba(110,0,10,.22) 50%,transparent 75%)}
+.ring .tile.lit{border-color:rgba(190,15,28,.75);box-shadow:0 0 0 1px rgba(160,10,22,.6),0 0 22px rgba(150,8,18,.4),0 22px 50px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,255,255,.12)}
+.ring .tile.lit .sheen{opacity:1}
+.burst{position:fixed;left:0;top:0;width:80px;height:80px;margin:-40px 0 0 -40px;z-index:54;pointer-events:none;border-radius:42% 58% 61% 39%/45% 38% 62% 55%;background:radial-gradient(circle,rgba(255,45,55,.55) 0,rgba(170,8,20,.5) 38%,transparent 72%);animation:burst .9s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes burst{0%{transform:translate(var(--x),var(--y)) scale(.2) rotate(0);opacity:1}60%{opacity:.7;border-radius:58% 42% 39% 61%/55% 62% 38% 45%}100%{transform:translate(var(--x),var(--y)) scale(2.6) rotate(40deg);opacity:0}}
+.spark{position:fixed;left:0;top:0;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;z-index:54;pointer-events:none;background:#d4121f;box-shadow:0 0 8px 2px rgba(200,10,25,.8);animation:spark .8s cubic-bezier(.1,.7,.3,1) forwards}
+@keyframes spark{0%{transform:translate(var(--x),var(--y)) scale(1);opacity:.9}100%{transform:translate(calc(var(--x) + var(--dx)),calc(var(--y) + var(--dy))) scale(.2);opacity:0}}
+@media(prefers-reduced-motion:reduce){#amb{animation:none}}
+/* ===== text ke niche halka red ===== */
+h2.t{padding-bottom:12px;background:linear-gradient(90deg,rgba(229,9,20,.8),rgba(229,9,20,.25) 55%,transparent) left bottom/78px 3px no-repeat;filter:drop-shadow(0 8px 14px rgba(229,9,20,.25))}
+#about p{padding-bottom:8px;border-bottom:1px solid transparent;border-image:linear-gradient(90deg,rgba(229,9,20,.28),transparent 70%) 1}
+.tl div b{display:block;width:fit-content;padding-bottom:3px;background:linear-gradient(90deg,rgba(229,9,20,.6),transparent) left bottom/60% 2px no-repeat}
 </style>
 </head>
 <body>
@@ -175,7 +206,7 @@ const D={
   journey:[
     ["Now","BA Political Science","Sachidanand Sinha College, Aurangabad"],
     ["Goal","A successful career","Gaining knowledge, building skills, and growing as a leader"]
-  ],
+  ]
 };
 
 /* ============ Neeche ka code: apne aap sab bhar deta hai ============ */
@@ -194,6 +225,92 @@ $("ptrack").innerHTML=D.projects.map((p,i)=>'<button class="tile pj" data-p="'+i
 if(D.achievements.length){$("achv").hidden=false;$("atrack").innerHTML=D.achievements.map((a,i)=>'<button class="tile pj" data-a="'+i+'" style="background:linear-gradient(160deg,#8a6d1f,#0E0B14)"><b>'+E(a[0])+"</b><span>"+E(a[1]||"")+"</span></button>").join("")}
 $("chips").innerHTML=D.skills.map(s=>'<span class="chip">'+E(s)+"</span>").join("");
 $("tl").innerHTML=D.journey.map(j=>"<div><em>"+E(j[0])+"</em><b>"+E(j[1])+"</b><span>"+E(j[2])+"</span></div>").join("");
+
+/* ===== 360 RING: drag se ghumao ===== */
+function ring(id,w,h,R){
+  const t=$(id),cards=[...t.children],n=cards.length;if(!n)return;
+  const spin=document.createElement("div");spin.className="spin";
+  cards.forEach((c,i)=>{c.style.margin=(-h/2)+"px 0 0 "+(-w/2)+"px";c.dataset.n=("0"+(i+1)).slice(-2);spin.appendChild(c)});
+  t.textContent="";t.appendChild(spin);t.classList.add("ring");
+  t.style.height=(h+36)+"px";
+  let a=0,v=0,dir=-1,drag=false,moved=0,lx=0;
+  const calm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+  const set=()=>{
+    cards.forEach((c,i)=>{
+      const p=(((360/n*i+a)%360)+540)%360-180,r=p*Math.PI/180;
+      const f=(1+Math.cos(r))/2;
+      c.style.transform="translate3d("+(R*Math.sin(r)).toFixed(1)+"px,0,"+(-(1-Math.cos(r))*R*.6).toFixed(1)+"px) rotateY("+(-Math.sin(r)*38).toFixed(1)+"deg) scale("+(.72+.28*f).toFixed(3)+")";
+      c.style.opacity=(.4+.6*f).toFixed(2);
+      c.style.zIndex=Math.round(f*100);
+    });
+  };
+  t.addEventListener("pointerdown",e=>{drag=true;moved=0;lx=e.clientX;v=0});
+  addEventListener("pointermove",e=>{
+    if(!drag)return;
+    const dx=e.clientX-lx;lx=e.clientX;
+    moved+=Math.abs(dx);a+=dx*.45;v=dx*.45;
+    if(dx)dir=dx>0?1:-1;
+    set();
+  });
+  addEventListener("pointerup",()=>{drag=false});
+  addEventListener("pointercancel",()=>{drag=false});
+  t.addEventListener("click",e=>{if(moved>8){e.preventDefault();e.stopPropagation();moved=0}},true);
+  (function loop(){
+    if(!drag){
+      if(Math.abs(v)>.05){a+=v;v*=.95}
+      else if(!calm)a+=dir*.2;
+      set();
+    }
+    requestAnimationFrame(loop);
+  })();
+}
+ring("ex",210,128,190);
+ring("ptrack",240,290,170);
+
+/* ===== SKILLS: tap karo to rang bhar jaye ===== */
+$("chips").addEventListener("click",e=>{
+  const c=e.target.closest(".chip");if(!c)return;
+  const r=c.getBoundingClientRect();
+  c.style.setProperty("--x",(e.clientX-r.left)+"px");
+  c.style.setProperty("--y",(e.clientY-r.top)+"px");
+  c.classList.toggle("on");
+});
+$("chips").addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const c=e.target.closest(".chip");if(!c)return;
+  e.preventDefault();c.classList.toggle("on");
+});
+
+/* ===== LIGHTING: dark red glow + tap par lights alag ho jayein ===== */
+(function(){
+  const b=document.body,calm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+  const mk=id=>{const d=document.createElement("div");d.id=id;b.appendChild(d);return d};
+  mk("amb");mk("vig");
+  document.querySelectorAll(".ring .tile").forEach(t=>{const i=document.createElement("i");i.className="sheen";t.insertBefore(i,t.firstChild)});
+  let cur=null,hide=0;
+  function spot(x,y,el){
+    const t=el&&el.closest?el.closest(".ring .tile"):null;
+    if(t!==cur){if(cur)cur.classList.remove("lit");cur=t;if(t)t.classList.add("lit")}
+    if(t){const r=t.getBoundingClientRect();
+      t.style.setProperty("--mx",((x-r.left)/r.width*100)+"%");
+      t.style.setProperty("--my",((y-r.top)/r.height*100)+"%")}
+  }
+  function burst(x,y){
+    const add=(c,st)=>{const d=document.createElement("div");d.className=c;
+      for(const k in st)d.style.setProperty(k,st[k]);b.appendChild(d);setTimeout(()=>d.remove(),1000)};
+    add("burst",{"--x":x+"px","--y":y+"px"});
+    for(let i=0;i<5;i++){
+      const ang=Math.random()*Math.PI*2,d=50+Math.random()*80;
+      add("spark",{"--x":x+"px","--y":y+"px","--dx":(Math.cos(ang)*d).toFixed(0)+"px","--dy":(Math.sin(ang)*d).toFixed(0)+"px"});
+    }
+  }
+  addEventListener("pointermove",e=>{clearTimeout(hide);spot(e.clientX,e.clientY,e.target)},{passive:true});
+  addEventListener("pointerdown",e=>{clearTimeout(hide);spot(e.clientX,e.clientY,e.target);if(!calm&&!(e.target.closest&&e.target.closest("#hero")))burst(e.clientX,e.clientY)},{passive:true});
+  addEventListener("pointerup",e=>{
+    if(e.pointerType==="mouse")return;
+    hide=setTimeout(()=>{if(cur){cur.classList.remove("lit");cur=null}},900);
+  });
+})();
 
 /* Popup */
 const modal=$("modal");
@@ -224,15 +341,15 @@ $("pfs").onclick=e=>{
 addEventListener("scroll",()=>$("bar").classList.toggle("s",scrollY>40),{passive:true});
 
 /* Showreel video na mile to hint dikhao */
-$("rv").addEventListener("error",()=>{$("reelBox").innerHTML='<p </p>'});
+if($("rv"))$("rv").addEventListener("error",()=>{if($("reelBox"))$("reelBox").innerHTML=""});
 
 /* ===== 3D NAAM: touch / mouse / phone-tilt se ghoomta hai ===== */
 const name3d=$("name"),photo=$("hv"),still=matchMedia("(prefers-reduced-motion:reduce)").matches;
 let tx=0,ty=0,gx=0,gy=0,t0=0,user=false;
 function depth(x,y){
   let s="";
-  for(let i=1;i<=14;i++)s+=(x*i*1.1).toFixed(1)+"px "+(y*i*1.1).toFixed(1)+"px 0 hsl(352 75% "+(46-i*2.7)+"%),";
-  return s+"0 28px 60px rgba(0,0,0,.6),0 0 70px rgba(229,9,20,.35)";
+  for(let i=1;i<=14;i++)s+=(x*i*1.1).toFixed(1)+"px "+(y*i*1.1).toFixed(1)+"px 0 hsl(352 18% "+(30-i*1.7)+"%),";
+  return s+"0 28px 60px rgba(0,0,0,.6),0 0 60px rgba(229,9,20,.08)";
 }
 function aim(nx,ny){gx=Math.max(-1,Math.min(1,nx));gy=Math.max(-1,Math.min(1,ny));user=true}
 addEventListener("pointermove",e=>aim((e.clientX/innerWidth-.5)*2,(e.clientY/innerHeight-.5)*2),{passive:true});
